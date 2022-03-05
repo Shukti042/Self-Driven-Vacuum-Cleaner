@@ -37,8 +37,9 @@ The integration between the two Atmega32 units includes one wire from the sonar 
 - **Remote Control:** We used a bluetooth module (HC05) to remotely initialize the motor pins, set turning speed, set driving speed and also stop the motor. We used USART communication to transmit speed as a percentage of the max speed. So our transmission was a 4 character string of the form cSSS where c can be 'i' for initialization or 's' for start driving. SSS stands for a percentage of the speed from 0 to 100%. There is another single character transmission where we transmit the character 'z' to tell the robot to stop immediately. This is used to end a vacuuming session remotely.
 
 ### Block Diagram
-
-![]()
+<p align="center">
+![Block Diagram](https://github.com/Shukti042/Self-Driven-Vacuum-Cleaner/blob/master/block-diagram.jpg)
+</p>
 
 ### Algorithm
 
