@@ -1,0 +1,226 @@
+<html>
+<body style="background-color:91BBFF;">
+
+<br/><br/>
+<hr />
+<hr />
+<h1 align="center"><a name="top">Self Driven Vacuum Cleaner</a></h1>
+<hr />
+<hr />
+<br/><br/>
+<br/><br/>
+
+<p><a href="#b_f"><p style="font-size:110%;margin-left: 30px">A Brief Description</p></a>
+<a href="#r_e"><p style="font-size:110%;margin-left: 30px">Required Equipments</p></a>
+<a href="#h_w"><p style="font-size:110%;margin-left: 30px">How it works?</p></a>
+<a href="#b_d"><p style="font-size:110%;margin-left: 30px">Block Diagram</p></a>
+<a href="#a_g"><p style="font-size:110%;margin-left: 30px">Algorithm</p></a>
+<a href="#p_d"><p style="font-size:110%;margin-left: 30px">Detailed Pin Diagram</p></a>
+<a href="#p_f"><p style="font-size:110%;margin-left: 30px">Problems Faced</p></a>
+<a href="#p_g"><p style="font-size:110%;margin-left: 30px">Group Members Information</p></a>
+<a href="#p_h"><p style="font-size:110%;margin-left: 30px">Course Teacher</p></a></p>
+
+
+<br/><br/>
+<br/><br/>
+<hr />
+<h2><a name="b_f", style="margin-left: 20px">A Brief Description</a></h2>
+<hr />
+<p style="font-size:120%;margin-left: 20px">
+In this Project we have designed a self driven vacuum cleaning robot. The body of the robot is made of PVC cut in a circular shape. The robot moves around the house, detects and avoids obstacles, takes a random walk around the room and all the while uses a vacuum cleaning unit to clean dust off the floor. The robot uses a sonar sensor to detect and avoid obstacles and gear motors to drive itself. Two gear motors motorize two 65 mm wheels. A caster ball is used to assist in movement. The three wheels are placed approximately 120 degrees apart around the circumference of the circular body.
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="r_e", style="margin-left: 20px">Required Equipments</a></h2>
+<hr />
+<p style="font-size:120%">
+<ul>
+  <br/>
+  <li style="margin-left: 20px"><p style="font-size:120%">PVC Board (2'x 2')</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">2 ATmega32 microcontrollers</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">1 Sonar (HC-SR04)</li>
+  <li style="margin-left: 20px"><p style="font-size:120%">2 Gear Motors (rated 5V, 300 rpm)</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">2 Lithium Polymer Batteries (3 x 3.7V each)</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">1 Motor Driver (L298N)</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">1 Bluetooth Module (HC05)</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">1 Vacuum Suction Pump (rated 12V)</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">2 Bread Boards</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">2 Wheels(65mm)</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">1 Caster Ball</p></li>
+  <li style="margin-left: 20px"><p style="font-size:120%">Lots of Wires</p></li>
+  
+</ul>
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="h_w", style="margin-left: 20px">Connections</a></h2>
+<hr />
+<p style="font-size:120%;margin-left: 20px">
+  <br/>
+  Our project has two units of connections and wiring with the two Atmega32's - the sonar unit and the motor unit.
+<ol>
+  <li style="font-size:120%"><b>Sonar Unit:</b> The sonar unit consists of one bread board, one Atmega32 and a HC-SR04 sonar. The four pins on the sonar are connected appropriately to the VCC, Ground, Trigger port and Echo interrupt on the Atmega32. This allows the sonar to communicate to and fro with the Atmega32. The sonar is placed centrally directly above the caster ball.</li>
+  <br/>
+  <li style="font-size:120%"><b>Motor Unit:</b> The motor unit consists of one bread board, containing the Atmega32 that drives the motors. The Atmega32 is connected to the two gear motors through the motor driver. The Atmega32 sends pulse width modulation waves through the configured enable pins and direction control signals through the direction control pins. The motor driver unit is powered by one of the two Lithium Polymer batteries used for the project. The motor driver has a 5V source output which we use to power both the Atmega32 units. In addition to all this, we have a HC05 bluetooth module interfaced with this Atmega32, which we can use in association with an Android app from a phone to initialize the motor speed, set driving speed, set turning speed, start operation and stop operation remotely.</li>
+</ol>
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="h_w", style="margin-left: 20px">Integration</a></h2>
+<hr />
+<p style="font-size:120%;margin-left: 20px">
+  <br/>
+  The integration between the two Atmega32 units includes one wire from the sonar unit Atmega32 to the motor unit Atmega32. The wire is used to send an interrupt to the motor unit Atmega32 upon detection of an obstacle by the sonar unit Atmega32. This allows the robot to stop, turn and thus avoid collisions with obstacles. 
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="h_w", style="margin-left: 20px">Operation</a></h2>
+<hr />
+<p style="font-size:120%;margin-left: 20px">
+  <ul style="list-style-type:square">
+    <br/>
+    <li style="font-size:120%"><b>Obstacle Detection:</b> To detect obstacle using the sonars, we used polling. The reason we didn't go for interrupts for the detection is because the sonar unit Atmega32 does not have any other function that can be stalled by the use of polling. The Atmega32 sends a trigger signal or a high 5V on the trigger pin of the sonar. The sonar upon receiving a high input continuously for 10 micro seconds on the Trigger pin sends out a sound wave and immediately sets the Echo pin output to be high. Upon receiving the reflected sound wave, it sets the Echo pin output to be low. The interval between these consevutive highs and lows can be used to calculate the distance of an object infront of the sonar. For the polling we used 30 cm as our intended distance of detection. So the sonar unit Atmega32 generated an interrupt for the motor driver unit Atmega32 upon detecting any object within 30 cm of the sonar.</li>
+    <br/>
+    <li style="font-size:120%"><b>Motor Control:</b> To control the gear motors we sent pulse width modulated signals to the two enable pins of the motor driver. The signal is basically an amount of voltage that changes in proportion with the speed set for the motor. We used 60% of the max speed of the motors as the operational driving speed and 50% of the max speed as the turning speed. Upon receiving an interrupt from the sonar unit Atmega32, the motor driver unit Atmega32 immediately sets the rotation control pins to be 00, which is the mode for stalling or halting the motor. After that it reverses the direction of motor to run the robot back a few inches and then turns left as a preset. The turn degree is randomized since we wanted to execute a random walk. The reason for the reversal of direction for a few inches is to avoid collision with corners. After executing the turn, the robot resumes normal operation.</li>
+    <br/>
+    <li style="font-size:120%"><b>Vacuum Control:</b> The vacuum pump is a 12V vacuum cleaning unit that we bought from the market. Since this was a prototype we didn't bother making our own compressor-suction unit. We powered this unit with one of the two Lithium Polymer batteries used for the project. The suction pump is constantly on for the entire duration of an operational session.</li>
+    <br/>
+    <li style="font-size:120%"><b>Remote Control:</b> We used a bluetooth module (HC05) to remotely initialize the motor pins, set turning speed, set driving speed and also stop the motor. We used USART communication to transmit speed as a percentage of the max speed. So our transmission was a 4 character string of the form cSSS where c can be 'i' for initialization or 's' for start driving. SSS stands for a percentage of the speed from 0 to 100%. There is another single character transmission where we transmit the character 'z' to tell the robot to stop immediately. This is used to end a vacuuming session remotely.</li>
+  </ul>
+</p>
+<br/><br/>
+<br/><br/>
+
+
+
+<hr />
+<h2><a name="b_d", style="margin-left: 20px">Block Diagram</a></h2>
+<hr />
+<br/><br/>
+<div style="display: flex; justify-content: center"><img src="block-diagram.jpg" alt="Block Diagram" align="top" class="center"/></div>
+
+<p style="text-align: center">Fig.1 Block Diagram
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="a_g", style="margin-left: 20px">Algorithm</a></h2>
+<hr />
+<br/>
+<p style="font-size:120%; margin-left: 20px">
+<ol>
+  <li style="font-size:120%">Start</li>
+  <br/>
+  <li style="font-size:120%">Turn on vacuum unit</li>
+  <br/>
+  <li style="font-size:120%">Turn on motor driver switch</li>
+  <br/>
+  <li style="font-size:120%">Pair android app with bluetooth module</li>
+  <br/>
+  <li style="font-size:120%">Initialize motor driver pins</li>
+  <br/>
+  <li style="font-size:120%">Start operation</li>
+  <br/>
+  <li style="font-size:120%">Operational block</li>
+  <br/>
+    <ol type="i">
+      <li style="font-size:120%">Start motor</li>
+      <br/>
+      <li style="font-size:120%">Obstacle within 30 cm?</li>
+      <br/>
+      <ol type="a">
+          <li style="font-size:120%">Yes : Go to step iii</li>
+          <br/>
+          <li style="font-size:120%">No : Go to step viii</li>
+          <br/>
+      </ol>
+      <li style="font-size:120%">Stop motor</li>
+      <br/>
+      <li style="font-size:120%">Reverse direction and drive for 500 ms</li>
+      <br/>
+      <li style="font-size:120%">Stop motor</li>
+      <br/>
+      <li style="font-size:120%">Turn left for 500 ms</li>
+      <br/>
+      <li style="font-size:120%">Stop motor</li>
+      <br/>
+      <li style="font-size:120%">Received stop signal?</li>
+      <br/>
+      <ol type="a">
+          <li style="font-size:120%">Yes : Go to step 8</li>
+          <br/>
+          <li style="font-size:120%">No : Go to step i</li>
+          <br/>
+      </ol>
+    </ol>
+    <li style="font-size:120%">Stop motor</li>
+    <br/>
+    <li style="font-size:120%">Stop</li>
+  
+</ol>
+</p>
+     
+
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="p_f", style="margin-left: 20px">Problems Faced</a></h2>
+<hr />
+
+<ol>
+  <br/>
+  <li style="font-size:120%">Initially we had to face a lot of problems to figure out the speed control mechanism for our gear motors. Even though the pulse width modulation allows us to send voltage from 0V to 5V and therefore should allow for a speed control range of 0 to 100%, in practicality the motors fail to drive the vehicle at speeds less than 50%. We assume it is because of the weight of the robot.</li>
+  <br/>
+  <li style="font-size:120%">During operation, the two motors don't always perform optimally and as a result, the speeds vary. This causes the robot to sometimes not drive in a straight line and rather drift off to one side. We thought of incorporating hall sensors to accurate control rotations and therefore ensure linear traversal and accurate turning mechanisms, but due to shortage of time we decided to opt out of that idea.</li>
+  <br/>
+  <li style="font-size:120%">The vacuum unit draws a large current. While initial testing we used jumper wires to power the unit and it ended in the wires being burnt to a crisp. We decided to use copper wires to avoid this in subsequent trial runs.</li>
+  <br/>
+  <li style="font-size:120%">We had a hard time eliminating garbage transmission in the bluetooth module, since we didn't know proper baud rate settings. Later on we figured out what was wrong and set the proper baud rate and achieved garbage free transmission.</li>
+</ol>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_g", style="margin-left: 20px">Group Members Information</a></h2>
+<hr />
+<br/>
+<h3><p style="font-size:120%;margin-left: 20px">Section A2</p></h3>
+<ul>
+  <li><p style="font-size:120%">Aniruddha Ganguly (1605031)</p></li>
+  <li><p style="font-size:120%">Anisha Islam (1605038)</p></li>
+  <li><p style="font-size:120%">Najrin Sultana (1605042)</p></li>
+  <li><p style="font-size:120%">Zahin Ahmed (1605057)</p></li>
+</ul>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_h", style="margin-left: 20px">Course Teachers</a></h2>
+<hr />
+<br/>
+<ol>
+  <li style="font-size:120%">Md. Tareq Mahmood<br/>Lecturer, CSE, BUET</li>
+  <br/>
+  <li style="font-size:120%">Masum Mushfiq<br/>Lecturer, CSE, BUET</li>
+</ol>
+
+<br/><br/>
+<br/><br/>
+
+<a href="#top"><p style="font-size:110%;margin-left: 20px">Back to top</p></a>
