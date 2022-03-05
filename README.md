@@ -38,7 +38,7 @@ The integration between the two Atmega32 units includes one wire from the sonar 
 
 ### Block Diagram
 <p align="center">
-<img src="https://github.com/Shukti042/Self-Driven-Vacuum-Cleaner/blob/master/block-diagram.jpg">
+<img src="https://github.com/Shukti042/Self-Driven-Vacuum-Cleaner/blob/master/block-diagram.jpg" height=700 width=700>
 </p>
 
 ### Algorithm
